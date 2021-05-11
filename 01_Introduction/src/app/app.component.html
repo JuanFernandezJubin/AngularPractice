@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- data bindind {{}} interpolation
+    <h1>Hola soy {{name}}</h1>
+    <br>
+                                <!--property bindind {{}} interpolation -->
+    <!-- <input type="text" class="form-control" [placeholder]="placeholderText" [disabled]='disabledValue'>
+    <br>
+    <img [src]="imageSrc" alt="img" width="100px" height="400px"> -->
+
+    <!-- Event Binding -->
+    <!-- <button class="btn btn-primary" (click)="changeText()">Click me</button>
+    <h3>{{text}}</h3> -->
+
+    <!-- Two Way data Binding -->
+    <!-- <input type="text" class="form-control" placeholder="Escriba algo aqui" [(ngModel)]="texto">
+    <br>
+    {{texto}} -->
+
+    <!--NGFOR  + NGIF-->
+    <div>
+      <h3>Listado de estudiantes:</h3>
+      <button class="btn btn-secondary ml-auto" (click)="toogle()">Toogle</button>
+    </div>
+  </div>
+  <br>
+  <table class="table" *ngIf='show'>
+    <thead>
+      <th>Nro</th>
+      <th>Nombre</th>
+      <th>Estado</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of listStudents; let i = index;" [ngSwitch]="student.state">
+        <td>{{i + 1 }}</td>
+        <td>{{student.name}}</td>
+        <!--NGSTYLE-->
+        <!-- <td [ngStyle]="{'font-style': student.state === 'Aprobado' ? 'italic' : 'normal'}">{{student.state}}</td> -->
+        
+        <!--NGCLASS-->
+        <!-- <td>
+          <span [ngClass]="student.state === 'Aprobado'? 'badge bg-success' : 'badge bg-danger'">
+            {{student.state}}
+          </span>
+        </td> -->
+        <td>
+          <span *ngSwitchCase="'Aprobado'" class="badge bg-success">
+            {{student.state}}
+          </span>
+          <span *ngSwitchCase="'Reprobado'" class="badge bg-danger">
+            {{student.state}}
+          </span>
+          <span *ngSwitchCase="'Libre'" class="badge bg-primary">
+            {{student.state}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 *ngIf="listStudents.length === 0">No hay registros para mostrar</h2>
+</div>
