@@ -1,0 +1,10 @@
+input {
+    text-align: center;
+}
+button {
+    width: 100%;
+}
+.font-title {
+    color: white;
+    text-transform: uppercase;
+}
